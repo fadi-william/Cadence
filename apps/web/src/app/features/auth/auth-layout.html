@@ -1,0 +1,70 @@
+<div
+  class="grid min-h-dvh pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] pt-[env(safe-area-inset-top)] lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]"
+>
+  <section
+    class="bg-wine relative hidden overflow-hidden p-12 lg:flex lg:flex-col lg:justify-between"
+  >
+    <app-logo [size]="46" [inverse]="true" />
+
+    <div class="relative z-10 grid gap-10 xl:grid-cols-[1fr_auto] xl:items-center">
+      <div class="max-w-md">
+        <h2 class="text-4xl font-extrabold leading-tight text-white xl:text-5xl">
+          {{ tagline() }}
+        </h2>
+        <ul class="mt-8 space-y-4 text-white/80">
+          @for (b of bullets; track b.text) {
+            <li class="flex items-center gap-3">
+              <span class="grid size-9 place-items-center rounded-full bg-white/15 text-accent"
+                ><app-icon [name]="b.icon" [size]="17"
+              /></span>
+              {{ b.text }}
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Product preview -->
+      <div class="hidden w-72 -rotate-2 flex-col gap-3 xl:flex" aria-hidden="true">
+        <div class="rounded-box border border-white/20 bg-white/10 p-4 backdrop-blur-md">
+          <div class="flex items-center justify-between text-xs text-white/70">
+            <span>PRs merged</span>
+            <span class="rounded-full bg-success/25 px-2 py-0.5 font-semibold text-green-200"
+              >+18%</span
+            >
+          </div>
+          <div class="mt-1 text-3xl font-extrabold text-white">86</div>
+          <div class="mt-3 flex h-14 items-end gap-1.5">
+            @for (h of bars; track $index) {
+              <span
+                class="flex-1 rounded-t-md bg-gradient-to-t from-white/30 to-white/80"
+                [style.height.%]="h"
+              ></span>
+            }
+          </div>
+        </div>
+        <div
+          class="ml-8 flex items-center gap-3 rounded-full border border-white/20 bg-white/10 p-2 pr-4 backdrop-blur-md"
+        >
+          <app-avatar name="Mina Samir" [size]="36" />
+          <div class="min-w-0 flex-1 leading-tight">
+            <div class="text-sm font-semibold text-white">Mina Samir</div>
+            <div class="text-[11px] text-white/60">Azure DevOps + Jira · combined</div>
+          </div>
+          <span class="rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-semibold text-accent"
+            >Elite</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <p class="text-sm text-white/50">Metrics are conversation starters, not scorecards.</p>
+    <app-brand-arcs [size]="760" />
+  </section>
+
+  <section class="flex flex-col items-center justify-center gap-6 px-4 py-10 sm:px-8">
+    <app-logo class="lg:hidden" [size]="44" />
+    <div class="surface w-full max-w-md p-6 sm:p-8">
+      <ng-content />
+    </div>
+  </section>
+</div>
